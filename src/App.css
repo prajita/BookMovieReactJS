@@ -1,27 +1,168 @@
-.App {
-  text-align: center;
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-left: 10%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.flex-container-column {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.flex-container-row {
+  display: flex;
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-evenly;
+  flex-direction: row;
+  margin-right: 20%;
+}
+
+.imgcontainer {
+  height: 50% !important;
+  width: 50% !important;
+  margin-left: 25%
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loginHeader {
+  color: green;
+}
+
+button {
   color: white;
+  background-color: green;
+  border: none;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin-left: 72%;
+  margin-top: 13%;
+}
+
+.dropdown-content p {
+  color: black;
+  padding-top: 5px;
+  font-size: 15px !important;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown-content-sound {
+  display: block;
+  position: absolute;
+  background-color: white;
+  min-width: 150px;
+  z-index: 1;
+  margin-left: 70%;
+}
+
+.dropdown-content-sound p {
+  color: green;
+  padding-top: 5px;
+  font-size: 15px !important;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  z-index: inherit;
+  font-weight: bold
+}
+
+.searchbox {
+  width: 35%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.heading {
+  color: green
+}
+
+.overflow-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-style {
+  width: "80rem";
+  margin-left: 8%;
+  margin-right: 8%;
+  background-color: beige
+}
+
+.card-text {
+  font-size: 15px !important;
+  color: black;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.card-title {
+  color: green;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.movie-title {
+  color: green;
+  font-weight: bold;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.movie_details {
+  margin-left: 10%;
+}
+
+.card-img-top {
+  width: 250px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.movieCard {
+  display: flex;
+  flex-direction: row;
+  align-content: space-evenly;
+  justify-content: center;
+  background-color: beige
+}
+
+.App {
+  text-align: center;
+  background-color: #282c34;
+  color: whitesmoke;
+  font-size: 30px;
 }
 
 .App-link {
@@ -35,4 +176,70 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.glow {
+  font-size: 30px;
+  color: #fff;
+  text-align: left;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px rgb(34, 160, 34), 0 0 30px rgb(0, 255, 0), 0 0 40px rgb(15, 122, 15), 0 0 50px rgb(152, 251, 152);
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 20px rgb(34, 160, 34), 0 0 30px rgb(0, 255, 0), 0 0 40px rgb(18, 122, 18), 0 0 50px rgb(173, 255, 47), 0 0 60px rgb(127, 255, 0);
+  }
+}
+
+.slide-style {
+  min-height: 400px !important;
+  min-width: 400px !important;
+}
+
+.paragraph {
+  max-width: 40%;
+  padding: 30px;
+}
+
+.busy-indicator {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.busy-indicator .busy-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .6;
+  background-color: #333;
+  z-index: -1;
+}
+
+.busy-indicator h2 {
+  width: 100%;
+  text-align: center;
+  color: #FFF;
+  margin-top: 20%;
+  text-shadow: 1px 1px 3px #444;
+}
+
+.busy-indicator .busy-icon {
+  width: 100%;
+  text-align: center;
+  text-shadow: 0 0 3px #444;
+}
+
+.busy-indicator .busy-icon i {
+  display: inline-block;
 }
