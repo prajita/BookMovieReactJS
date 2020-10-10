@@ -1,9 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from './App';
+import LogoutContainer from './Logout';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
+
+test('renders without crashing', () => {
+  const { getByText } = render(<LogoutContainer />);
+  const linkElement = getByText(/Thank you/i);
   expect(linkElement).toBeInTheDocument();
+
 });
