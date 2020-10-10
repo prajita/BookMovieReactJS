@@ -1,2 +1,3 @@
 export const REQUEST_MOVIES = 'REQUEST_MOVIES';
 export const FETCH_MOVIES = 'FETCH_MOVIES';
+export const USER_LOGOUT = 'USER_LOGOUT';

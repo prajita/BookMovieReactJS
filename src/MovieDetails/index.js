@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { logout } from '../actions';
+
 
 function MovieDetails({ ...props }) {
     const movie = props.moviesListGlobal.movies.filter(e => props.location.pathname.includes(e.imdbID))[0];
     const posters = movie.Stills;
     const [showSoundEffect, setSoundEffect] = useState(false);
-
+    const dispatch = useDispatch();
     function gotoDashboard() {
         props.history.push('/movies');
     }
@@ -19,6 +22,10 @@ function MovieDetails({ ...props }) {
         console.log("Book movie with sound effect " + movie.SoundEffects[index]);
         setSoundEffect(!showSoundEffect);
 
+    }
+    function userLogout() {
+        dispatch(logout());
+        props.history.push('/logout');
     }
 
     const slide = <div id="carouselSlide " className="carousel slide carousel-fade" data-ride="carousel">
@@ -47,7 +54,11 @@ function MovieDetails({ ...props }) {
     return (
         <React.Fragment>
 
-            <div className="movie_details"><button onClick={() => gotoDashboard()} >Back to Dashboard</button>
+            <div className="movie_details">
+                <div className="movie_details_header">
+                    <button className="btn1" onClick={() => gotoDashboard()} >Back to Dashboard</button>
+                    <button className="btn2" onClick={() => userLogout()}>Logout</button>
+                </div>
                 <p className="movie-title">{movie.Title}{"(" + movie.Language.toLowerCase() + ")"}</p>
                 <StarRatingComponent
                     name="rating"

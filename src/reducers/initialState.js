@@ -1,5 +1,6 @@
 export default {
    
     moviesListGlobal: null,
-    loading: true
+    loading: true,
+    isAuthenticated:false
 }

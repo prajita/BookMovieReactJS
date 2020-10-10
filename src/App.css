@@ -165,18 +165,6 @@ button {
   font-size: 30px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 .glow {
   font-size: 30px;
@@ -192,7 +180,7 @@ button {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px rgb(34, 160, 34), 0 0 30px rgb(0, 255, 0), 0 0 40px rgb(15, 122, 15), 0 0 50px rgb(152, 251, 152);
   }
   to {
-    text-shadow: 0 0 10px #fff, 0 0 20px rgb(34, 160, 34), 0 0 30px rgb(0, 255, 0), 0 0 40px rgb(18, 122, 18), 0 0 50px rgb(173, 255, 47), 0 0 60px rgb(127, 255, 0);
+    text-shadow: 0 0 10px #fff, 0 0 20px rgb(34, 160, 34), 0 0 30px rgb(0, 255, 0), 0 0 40px rgb(18, 122, 100), 0 0 50px rgb(173, 255, 47), 0 0 60px rgb(127, 255, 0);
   }
 }
 
@@ -242,4 +230,42 @@ button {
 
 .busy-indicator .busy-icon i {
   display: inline-block;
+}
+
+.modalclass {
+  position: relative;
+  background-color: beige !important;
+  width: 70%;
+  height: 70%;
+  border: 1px solid green !important;
+  box-shadow: 1px 1px 1px whitesmoke;
+  box-sizing: border-box;
+  margin-left: 13%;
+  margin-top: 5%;
+  padding-left: 5%;
+  padding-top: 1%
+}
+
+.modal_button_style {
+  width: 10%;
+}
+
+.Logout {
+  margin-left: 10%
+}
+
+.btn1 {
+  margin-left: 10%
+}
+
+.btn2 {
+  margin-left: 50%
+}
+
+.logoutHeader {
+  color: green;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
 }

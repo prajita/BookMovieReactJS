@@ -3,9 +3,9 @@ import { fetchPositionApi } from '../utils/fetchDetails';
 import PropTypes from 'prop-types';
 import '../App.css';
 import SpinnerComponent from '../components/SpinnerComponent';
-import { loadMovies } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { logout } from '../actions';
 import Movies from '../Movies';
 
 
@@ -39,7 +39,8 @@ class Dashboard extends Component {
             list = props.moviesListGlobal.movies;
         }
         return {
-            movies: list
+            movies: list,
+            filteredList: list
         }
     }
     searchMovie(name) {
@@ -67,6 +68,11 @@ class Dashboard extends Component {
         let movies = lang === 'None' ? movieList.movies : movieList.movies.filter(e => e.Language.toLowerCase() === lang.toLowerCase());
         this.setState({ movies, filteredList: movies })
     }
+    userLogout() {
+        this.props.logout();
+        this.props.history.push('/logout');
+
+    }
 
 
     componentDidMount() {
@@ -74,7 +80,6 @@ class Dashboard extends Component {
             console.log(position.coords.latitude);
             console.log(position.coords.longitude);
             //fetchPositionApi(position.coords.latitude, position.coords.longitude, (res) => { console.log("city or locality::" + res.locality) })
-            //navigator.geolocation.getCurrentPosition(this.showPosition);
         }, failure => {
             if (failure.message.startsWith("Only secure origins are allowed")) {
                 alert("Geolocation is not supported by this browser.");
@@ -89,6 +94,9 @@ class Dashboard extends Component {
                 {this.props.loading ?
                     <SpinnerComponent message="Loading collections..." /> :
                     <React.Fragment>
+                        <div><span className="heading">Hello there !! watch your favorite movies !!</span>
+                            <button onClick={() => this.userLogout()} className="Logout">Logout</button>
+                        </div>
                         <div className="App flex-container">
                             <label className="">Sort By</label>
                             <button id="review" onClick={() => this.sortByReviews()} >Best Reviews</button>
@@ -125,9 +133,10 @@ const mapDispatchToProps = (dispatch) => {
     return (
         bindActionCreators(
             {
-                loadMovies
+                logout
             }, dispatch
         )
     )
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+
