@@ -79,7 +79,7 @@ class Dashboard extends Component {
         navigator.geolocation.getCurrentPosition(position => {
             console.log(position.coords.latitude);
             console.log(position.coords.longitude);
-            //fetchPositionApi(position.coords.latitude, position.coords.longitude, (res) => { console.log("city or locality::" + res.locality) })
+            fetchPositionApi(position.coords.latitude, position.coords.longitude, (res) => { console.log("city or locality::" + res.locality) })
         }, failure => {
             if (failure.message.startsWith("Only secure origins are allowed")) {
                 alert("Geolocation is not supported by this browser.");
