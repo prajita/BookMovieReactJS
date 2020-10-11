@@ -5,8 +5,8 @@ import '../App.css';
 import SpinnerComponent from '../components/SpinnerComponent';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { logout } from '../actions';
-import Movies from '../Movies';
+import { logoutState } from '../actions';
+import Movies from '../components/Movies';
 
 
 
@@ -69,7 +69,7 @@ class Dashboard extends Component {
         this.setState({ movies, filteredList: movies })
     }
     userLogout() {
-        this.props.logout();
+        this.props.logoutState();
         this.props.history.push('/logout');
 
     }
@@ -133,7 +133,7 @@ const mapDispatchToProps = (dispatch) => {
     return (
         bindActionCreators(
             {
-                logout
+                logoutState
             }, dispatch
         )
     )

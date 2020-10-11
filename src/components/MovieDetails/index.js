@@ -3,7 +3,7 @@ import StarRatingComponent from 'react-star-rating-component';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { logout } from '../actions';
+import { logoutState } from '../../actions';
 
 
 function MovieDetails({ ...props }) {
@@ -24,7 +24,7 @@ function MovieDetails({ ...props }) {
 
     }
     function userLogout() {
-        dispatch(logout());
+        dispatch(logoutState());
         props.history.push('/logout');
     }
 
@@ -52,10 +52,9 @@ function MovieDetails({ ...props }) {
         </a>
     </div>
     return (
-        <React.Fragment>
-
-            <div className="movie_details">
-                <div className="movie_details_header">
+        <div className="movie_details">
+            <div className="movie_details_header">
+                <div >
                     <button className="btn1" onClick={() => gotoDashboard()} >Back to Dashboard</button>
                     <button className="btn2" onClick={() => userLogout()}>Logout</button>
                 </div>
@@ -87,7 +86,7 @@ function MovieDetails({ ...props }) {
                 {slide}
             </div>
 
-        </React.Fragment >
+        </div>
     )
 
 }

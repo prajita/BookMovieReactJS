@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import Modal from "react-modal";
-import { logout, loadMovies } from '../actions';
+import { logoutState, loadMovies } from '../../actions';
 import { useAuth0 } from '@auth0/auth0-react';
 import JSONPretty from 'react-json-pretty';
 import { useDispatch } from 'react-redux';
-import '../App.css';
+import '../../App.css';
 
 
 const LoginContainer = memo(({ ...props }) => {
@@ -13,8 +13,8 @@ const LoginContainer = memo(({ ...props }) => {
     const submit = () => {
         loginWithRedirect();
     }
-    const userLogout = () => {
-        dispatch(logout());
+    const userLogout = () => {        
+        dispatch(logoutState());
         props.history.push('/logout');
     }
     const proceed = () => {

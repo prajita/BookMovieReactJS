@@ -37,7 +37,7 @@ export const loadMovies = () => {
     }
 }
 
-export const logout=()=>{
+export const logoutState=()=>{
     return function(dispatch){
         dispatch(userLogout());
     }

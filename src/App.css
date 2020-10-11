@@ -140,8 +140,12 @@ button {
   cursor: pointer;
 }
 
-.movie_details {
+.movie_details_header {
   margin-left: 10%;
+}
+
+.movie_details {
+  background-color: black;
 }
 
 .card-img-top {
@@ -155,7 +159,9 @@ button {
   flex-direction: row;
   align-content: space-evenly;
   justify-content: center;
-  background-color: beige
+  background-color: beige;
+  height: 500px;
+  padding-top: 3%;
 }
 
 .App {
@@ -164,7 +170,6 @@ button {
   color: whitesmoke;
   font-size: 30px;
 }
-
 
 .glow {
   font-size: 30px;
@@ -186,7 +191,10 @@ button {
 
 .slide-style {
   min-height: 400px !important;
-  min-width: 400px !important;
+  min-width: 500px !important;
+  max-height: 400px !important;
+  max-width: 500px !important;
+  position: static;
 }
 
 .paragraph {
@@ -233,7 +241,7 @@ button {
 }
 
 .modalclass {
-  position: relative;
+  position: fixed;
   background-color: beige !important;
   width: 70%;
   height: 70%;

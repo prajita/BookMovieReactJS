@@ -2,9 +2,9 @@ import React from "react";
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import history from './history';
 import App from './App';
-import LogoutContainer from './Logout';
-import LoginContainer from './Login';
-import MovieDetails from './MovieDetails';
+import LogoutContainer from './components/Logout';
+import LoginContainer from './components/Login';
+import MovieDetails from './components/MovieDetails';
 import { useSelector } from 'react-redux';
 
 
