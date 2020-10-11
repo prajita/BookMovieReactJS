@@ -6,7 +6,7 @@ import '../../App.css';
 const LogoutContainer = () => {
     const { logout } = useAuth0();
     const loginAgain = function () {
-        logout({ returnTo: window.location.origin });
+        logout({ returnTo: 'http://localhost:3001' });
     }
     return (
         <React.Fragment>

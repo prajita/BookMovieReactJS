@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import StarRatingComponent from 'react-star-rating-component';
+import { useAuth0 } from '@auth0/auth0-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -7,6 +8,7 @@ import { logoutState } from '../../actions';
 
 
 function MovieDetails({ ...props }) {
+    const {logout} = useAuth0();
     const movie = props.moviesListGlobal.movies.filter(e => props.location.pathname.includes(e.imdbID))[0];
     const posters = movie.Stills;
     const [showSoundEffect, setSoundEffect] = useState(false);
@@ -25,7 +27,7 @@ function MovieDetails({ ...props }) {
     }
     function userLogout() {
         dispatch(logoutState());
-        props.history.push('/logout');
+        logout({returnTo: 'http://localhost:3001/logout'});
     }
 
     const slide = <div id="carouselSlide " className="carousel slide carousel-fade" data-ride="carousel">

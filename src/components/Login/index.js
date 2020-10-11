@@ -8,17 +8,14 @@ import '../../App.css';
 
 
 const LoginContainer = memo(({ ...props }) => {
-    const { loginWithRedirect, isAuthenticated, user } = useAuth0();
+    const { loginWithRedirect, isAuthenticated, user ,logout} = useAuth0();
     const dispatch = useDispatch();
-    const submit = () => {
-        loginWithRedirect();
-    }
     const userLogout = () => {        
         dispatch(logoutState());
-        props.history.push('/logout');
+        logout({returnTo: 'http://localhost:3001/logout'});
     }
     const proceed = () => {
-        dispatch(loadMovies())
+        dispatch(loadMovies(user.given_name));
         props.history.push('/movies');
     }
 
@@ -36,7 +33,7 @@ const LoginContainer = memo(({ ...props }) => {
                     <div><label><b>Password</b></label>
                         <input className="form-control" type="password" placeholder="Enter Password" name="psw" required /></div>
                     <br />
-                    <button type="submit" onClick={submit}>Login</button>
+                    <button onClick={()=> loginWithRedirect()}>Login</button>
                 </div>
             </div>}
             {isAuthenticated &&

@@ -5,6 +5,7 @@ import '../App.css';
 import SpinnerComponent from '../components/SpinnerComponent';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withAuth0 } from '@auth0/auth0-react';
 import { logoutState } from '../actions';
 import Movies from '../components/Movies';
 
@@ -70,7 +71,8 @@ class Dashboard extends Component {
     }
     userLogout() {
         this.props.logoutState();
-        this.props.history.push('/logout');
+        const { logout } = this.props.auth0;
+        logout({ returnTo: 'http://localhost:3001/logout' });
 
     }
 
@@ -94,7 +96,7 @@ class Dashboard extends Component {
                 {this.props.loading ?
                     <SpinnerComponent message="Loading collections..." /> :
                     <React.Fragment>
-                        <div><span className="heading">Hello there !! watch your favorite movies !!</span>
+                        <div><span className="heading">Hello {this.props.username} !! watch your favorite movies !!</span>
                             <button onClick={() => this.userLogout()} className="Logout">Logout</button>
                         </div>
                         <div className="App flex-container">
@@ -125,7 +127,8 @@ Dashboard.propTypes = {
 const mapStateToProps = (state) => {
     return {
         moviesListGlobal: state.moviesListGlobal,
-        loading: state.loading
+        loading: state.loading,
+        username: state.username
 
     };
 }
@@ -138,5 +141,5 @@ const mapDispatchToProps = (dispatch) => {
         )
     )
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(withAuth0(Dashboard));
 

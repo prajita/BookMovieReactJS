@@ -8,10 +8,11 @@ import {
     USER_LOGOUT
 } from './actionTypes';
 
-export const requestMovies = () => {
+export const requestMovies = (username) => {
     return {
         type: REQUEST_MOVIES,
         isAuthenticated:true,
+        username:username,
         loading: true
     }
 }
@@ -28,9 +29,9 @@ export const getMoviesSucess = (movies) => {
     }
 }
 
-export const loadMovies = () => {
+export const loadMovies = (username) => {
     return function (dispatch) {
-        dispatch(requestMovies());
+        dispatch(requestMovies(username));
         fetchMoviesApi((movies) => {
             dispatch(getMoviesSucess(movies));
         });
