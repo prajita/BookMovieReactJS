@@ -20,14 +20,12 @@ class Dashboard extends Component {
         }
         this.state = {
             movies: list,
-            showDropDown: false,
             filteredList: list
         }
         this.searchMovie = this.searchMovie.bind(this);
         this.sortByMovieName = this.sortByMovieName.bind(this);
         this.sortByReviews = this.sortByReviews.bind(this);
         this.selectMovie = this.selectMovie.bind(this);
-        this.openCloseDropdown = this.openCloseDropdown.bind(this);
         this.filterByLanguage = this.filterByLanguage.bind(this);
 
     }
@@ -56,10 +54,7 @@ class Dashboard extends Component {
         let movies = this.state.movies.sort((a, b) => parseInt(a.imdbRating) <= parseInt(b.imdbRating) ? 1 : -1);
         this.setState({ movies })
     }
-    openCloseDropdown() {
-        let d = this.state.showDropDown;
-        this.setState({ showDropDown: !d })
-    }
+   
     selectMovie(row) {
         this.props.history.push('/movies/' + row.imdbID);
     }
@@ -105,13 +100,19 @@ class Dashboard extends Component {
                             <button id="recent" onClick={() => this.sortByMovieName()} >Movie Name</button>
                             <span>Search Movie Name: </span>
                             <input className="searchbox form-control" type="text" onChange={(e) => this.searchMovie(e.target.value)}></input>
-                            <button id="filter" onClick={() => this.openCloseDropdown()}>Filter by</button>
-                            {this.state.showDropDown &&
-                                <div id="myDropdown" className="dropdown-content">
-                                    <p id="Hindi" onClick={(e) => this.filterByLanguage(e.target.id)}>Hindi</p>
-                                    <p id="English" onClick={(e) => this.filterByLanguage(e.target.id)}>English</p>
-                                    <p id="None" onClick={(e) => this.filterByLanguage(e.target.id)}>None</p>
-                                </div>}
+
+                            <div className="btn-group">
+                                <button type="button" className="dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Filter
+                            </button>
+                                <div className="dropdown-menu">
+                                    <p className="dropdown-item dropdown-item-each" id="Hindi" onClick={(e) => this.filterByLanguage(e.target.id)} >Hindi</p>
+                                    <p className="dropdown-item dropdown-item-each" id="English" onClick={(e) => this.filterByLanguage(e.target.id)}>English</p>
+                                    <p className="dropdown-item dropdown-item-each" id="None" onClick={(e) => this.filterByLanguage(e.target.id)}>None</p>
+
+                                </div>
+                            </div>
                         </div>
                         <Movies movies={this.state.movies} selectMovie={this.selectMovie} />
                     </React.Fragment>

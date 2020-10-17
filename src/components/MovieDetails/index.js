@@ -8,26 +8,22 @@ import { logoutState } from '../../actions';
 
 
 function MovieDetails({ ...props }) {
-    const {logout} = useAuth0();
+    const { logout } = useAuth0();
     const movie = props.moviesListGlobal.movies.filter(e => props.location.pathname.includes(e.imdbID))[0];
     const posters = movie.Stills;
-    const [showSoundEffect, setSoundEffect] = useState(false);
     const dispatch = useDispatch();
     function gotoDashboard() {
         props.history.push('/movies');
     }
-    function selectSoundEffect() {
-        setSoundEffect(!showSoundEffect);
-    }
+   
     function bookNow(val) {
         let index = parseInt(val);
         console.log("Book movie with sound effect " + movie.SoundEffects[index]);
-        setSoundEffect(!showSoundEffect);
 
     }
     function userLogout() {
         dispatch(logoutState());
-        logout({returnTo: 'http://localhost:3001/logout'});
+        logout({ returnTo: 'http://localhost:3001/logout' });
     }
 
     const slide = <div id="carouselSlide " className="carousel slide carousel-fade" data-ride="carousel">
@@ -70,15 +66,18 @@ function MovieDetails({ ...props }) {
                 <div className="flex-container-row">
                     <p className="card-title">{"Movie Location :" + movie.Location}</p>
                     <p className="glow">{movie.listingType}</p>
+                    <div className="btn-group">
+                        <button type="button" className="dropdown-toggle"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Book Now
+                            </button>
+                        <div className="dropdown-menu">
+                            <p className="dropdown-item dropdown-item-each" id="0" key="0" onClick={(e) => bookNow(e.target.id)}>{movie.SoundEffects[0]}</p>
+                            <p className="dropdown-item dropdown-item-each" id="1" key="1" onClick={(e) => bookNow(e.target.id)}>{movie.SoundEffects[1]}</p>
 
-                    <button onClick={(e) => selectSoundEffect(e)}>Book Now</button>
-                    {showSoundEffect &&
-                        <div id="myDropdown" className="dropdown-content-sound">
-                            <p id="0" key="0" onClick={(e) => bookNow(e.target.id)}>{movie.SoundEffects[0]}</p>
-                            <p id="1" key="1" onClick={(e) => bookNow(e.target.id)}>{movie.SoundEffects[1]}</p>
                         </div>
+                    </div>
 
-                    }
                 </div>
             </div>
 
