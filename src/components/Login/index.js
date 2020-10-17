@@ -5,10 +5,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 import JSONPretty from 'react-json-pretty';
 import { useDispatch } from 'react-redux';
 import '../../App.css';
+import SpinnerComponent from '../SpinnerComponent';
+
 
 
 const LoginContainer = memo(({ ...props }) => {
-    const { loginWithRedirect, isAuthenticated, user ,logout} = useAuth0();
+    const { loginWithRedirect, isAuthenticated, user ,logout, isLoading} = useAuth0();
     const dispatch = useDispatch();
     const userLogout = () => {        
         dispatch(logoutState());
@@ -21,8 +23,9 @@ const LoginContainer = memo(({ ...props }) => {
 
     return (
         <React.Fragment>
+            {isLoading && <SpinnerComponent/>}
 
-            {!isAuthenticated && <div className="login">
+            {!isAuthenticated && !isLoading && <div className="login">
                 <h1 className="loginHeader">Login Form</h1><br />
                 <div>
                     <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" className=" imgcontainer avatar" />
@@ -36,7 +39,7 @@ const LoginContainer = memo(({ ...props }) => {
                     <button onClick={()=> loginWithRedirect()}>Login</button>
                 </div>
             </div>}
-            {isAuthenticated &&
+            {isAuthenticated && !isLoading  &&
                 <div>
                     <Modal isOpen={true} ariaHideApp={false} className="modalclass">
                         <div >
