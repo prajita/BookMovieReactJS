@@ -12,18 +12,22 @@ function MovieDetails({ ...props }) {
     const movie = props.moviesListGlobal.movies.filter(e => props.location.pathname.includes(e.imdbID))[0];
     const posters = movie.Stills;
     const dispatch = useDispatch();
+
+    const [showAlert, updateShowAlert] = useState(false);
     function gotoDashboard() {
         props.history.push('/movies');
     }
-   
+
     function bookNow(val) {
         let index = parseInt(val);
         console.log("Book movie with sound effect " + movie.SoundEffects[index]);
+        updateShowAlert(true);
 
     }
     function userLogout() {
         dispatch(logoutState());
-        logout({ returnTo: 'http://localhost:3001/logout' });
+        logout({ returnTo: window.location.origin+'/logout' });
+        //logout({ returnTo: 'http://localhost:3001/logout' });
     }
 
     const slide = <div id="carouselSlide " className="carousel slide carousel-fade" data-ride="carousel">
@@ -51,6 +55,17 @@ function MovieDetails({ ...props }) {
     </div>
     return (
         <div className="movie_details">
+            {showAlert &&
+
+                <div className="alert alert-success" role="alert">
+                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong className="alert-heading">Success!</strong>
+                    <span>Aww yeah, you successfully booked the movie.</span>
+
+                </div>
+            }
             <div className="movie_details_header">
                 <div >
                     <button className="btn1" onClick={() => gotoDashboard()} >Back to Dashboard</button>

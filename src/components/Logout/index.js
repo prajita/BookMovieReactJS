@@ -6,12 +6,13 @@ import '../../App.css';
 const LogoutContainer = () => {
     const { logout } = useAuth0();
     const loginAgain = function () {
-        logout({ returnTo: 'http://localhost:3001' });
+        logout({ returnTo: window.location.origin });
+        //logout({ returnTo: 'http://localhost:3001' });
     }
     return (
         <React.Fragment>
             <div className="logoutHeader"> <h2 >Thank you for visiting my page !!</h2>
-                <button onClick={() => loginAgain()}>login again</button>
+                <button id="logout" onClick={() => loginAgain()}>login again</button>
             </div>
         </React.Fragment>
     )

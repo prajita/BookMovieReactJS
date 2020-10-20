@@ -54,7 +54,7 @@ class Dashboard extends Component {
         let movies = this.state.movies.sort((a, b) => parseInt(a.imdbRating) <= parseInt(b.imdbRating) ? 1 : -1);
         this.setState({ movies })
     }
-   
+
     selectMovie(row) {
         this.props.history.push('/movies/' + row.imdbID);
     }
@@ -67,7 +67,8 @@ class Dashboard extends Component {
     userLogout() {
         this.props.logoutState();
         const { logout } = this.props.auth0;
-        logout({ returnTo: 'http://localhost:3001/logout' });
+        logout({ returnTo: window.location.origin+'/logout' });
+       // logout({ returnTo: 'http://localhost:3001/logout' });
 
     }
 
@@ -99,7 +100,8 @@ class Dashboard extends Component {
                             <button id="review" onClick={() => this.sortByReviews()} >Best Reviews</button>
                             <button id="recent" onClick={() => this.sortByMovieName()} >Movie Name</button>
                             <span>Search Movie Name: </span>
-                            <input className="searchbox form-control" type="text" onChange={(e) => this.searchMovie(e.target.value)}></input>
+                            <input className="searchbox form-control" placeholder="search..."
+                                type="text" onChange={(e) => this.searchMovie(e.target.value)}></input>
 
                             <div className="btn-group">
                                 <button type="button" className="dropdown-toggle"

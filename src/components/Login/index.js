@@ -14,7 +14,8 @@ const LoginContainer = memo(({ ...props }) => {
     const dispatch = useDispatch();
     const userLogout = () => {        
         dispatch(logoutState());
-        logout({returnTo: 'http://localhost:3001/logout'});
+        logout({ returnTo: window.location.origin+'/logout' });
+        //logout({returnTo: 'http://localhost:3001/logout'});
     }
     const proceed = () => {
         dispatch(loadMovies(user.given_name));
@@ -44,7 +45,7 @@ const LoginContainer = memo(({ ...props }) => {
                     <Modal isOpen={true} ariaHideApp={false} className="modalclass">
                         <div >
                             <h2 className="loginHeader">Congratulations !! you have logged in successfully !!</h2>
-                            <h3 className="loginHeader">Hello, {user.given_name} !!</h3>
+                            <h3 className="loginHeader">Hello, {user.given_name||user.nickname} !!</h3>
                             <JSONPretty data={user.email} />
                             <JSONPretty data={user} />
                             <button className="modal_button_style" onClick={userLogout}>Logout</button>
