@@ -43,16 +43,22 @@ class Dashboard extends Component {
         }
     }
     searchMovie(name) {
-        let movies = this.state.filteredList.filter(e => e.Title.toLowerCase().includes(name.toLowerCase()));
-        this.setState({ movies })
+        this.setState((prevState) => {
+            let movies = prevState.filteredList.filter(e => e.Title.toLowerCase().includes(name.toLowerCase()));
+            return { movies };
+        })
     }
     sortByMovieName() {
-        let movies = this.state.movies.sort((a, b) => a.Title > b.Title ? 1 : -1);
-        this.setState({ movies })
+        this.setState((prevState) => {
+            let movies = prevState.movies.sort((a, b) => a.Title > b.Title ? 1 : -1);
+            return { movies };
+        })
     }
     sortByReviews() {
-        let movies = this.state.movies.sort((a, b) => parseInt(a.imdbRating) <= parseInt(b.imdbRating) ? 1 : -1);
-        this.setState({ movies })
+        this.setState((prevState) => {
+            let movies = prevState.movies.sort((a, b) => parseInt(a.imdbRating) <= parseInt(b.imdbRating) ? 1 : -1);
+            return { movies };
+        })
     }
 
     selectMovie(row) {
@@ -60,15 +66,18 @@ class Dashboard extends Component {
     }
 
     filterByLanguage(lang) {
-        let movieList = this.props.moviesListGlobal;
-        let movies = lang === 'None' ? movieList.movies : movieList.movies.filter(e => e.Language.toLowerCase() === lang.toLowerCase());
-        this.setState({ movies, filteredList: movies })
+
+        this.setState((prevState, props) => {
+            let movieList = props.moviesListGlobal;
+            let movies = lang === 'None' ? movieList.movies : movieList.movies.filter(e => e.Language.toLowerCase() === lang.toLowerCase());
+            return { movies, filteredList: movies }
+        })
     }
     userLogout() {
         this.props.logoutState();
         const { logout } = this.props.auth0;
-        logout({ returnTo: window.location.origin+'/logout' });
-       // logout({ returnTo: 'http://localhost:3001/logout' });
+        logout({ returnTo: window.location.origin + '/logout' });
+        // logout({ returnTo: 'http://localhost:3001/logout' });
 
     }
 
